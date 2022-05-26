@@ -20,14 +20,14 @@ int getValidacionMaximoMinimo(int* resultado, char* mensaje,char* mensajeError, 
 	fflush(stdin);
 	gets(array);
 
-	devuelve=chearLetraint(array,100);
+	devuelve=checkearLetraint(array,100);
 
 	while(devuelve!=0)
 	{
 		printf(mensajeError);
 		fflush(stdin);
 		gets(array);
-		devuelve=chearLetraint(array,100);
+		devuelve=checkearLetraint(array,100);
 	}
 
 	*resultado=atoi(array);
@@ -37,20 +37,20 @@ int getValidacionMaximoMinimo(int* resultado, char* mensaje,char* mensajeError, 
 		printf(mensajeError);
 		fflush(stdin);
 		gets(array);
-		devuelve=chearLetraint(array,100);
+		devuelve=checkearLetraint(array,100);
 		while(devuelve!=0)
 		{
 			printf(mensajeError);
 			fflush(stdin);
 			gets(array);
-			devuelve=chearLetraint(array,100);
+			devuelve=checkearLetraint(array,100);
 		}
 		*resultado=atoi(array);
 	}
 	return 0;
 }
 
-int chearLetraint(char* array, int tam)
+int checkearLetraint(char* array, int tam)
 {
 	int resultado;
 	int i;
@@ -91,20 +91,20 @@ int UTN_GetValor(char* array, int tam, char* mensaje, char* mensajeError, int co
 		}
 		if(conNumero==0)
 		{
-			comprobacion=chequearArrayNumero(tam,array,mensajeError);
+			comprobacion=chequearArrayNumero(tam,array);
 			while(comprobacion!=0)
 			{
 				printf(mensajeError);
 				gets(array);
 				fflush(stdin);
-				comprobacion=chequearArrayNumero(tam,array,mensajeError);
+				comprobacion=chequearArrayNumero(tam,array);
 			}
 		}
 	}
 	return devuelve;
 }
 
-int chequearArrayNumero(int tam, char* array, char* mensajeError)
+int chequearArrayNumero(int tam, char* array)
 {
 	int comprobacion;
 	int i;
@@ -133,14 +133,14 @@ int UTN_getValidacionMayorInt(int* resultado, char* mensaje,char* mensajeError, 
 	fflush(stdin);
 	gets(array);
 
-	devuelve=chearLetraint(array,100);
+	devuelve=checkearLetraint(array,100);
 
 	while(devuelve!=0)
 	{
 		printf(mensajeError);
 		fflush(stdin);
 		gets(array);
-		devuelve=chearLetraint(array,100);
+		devuelve=checkearLetraint(array,100);
 	}
 
 	*resultado=atoi(array);
@@ -150,13 +150,13 @@ int UTN_getValidacionMayorInt(int* resultado, char* mensaje,char* mensajeError, 
 		printf(mensajeError);
 		fflush(stdin);
 		gets(array);
-		devuelve=chearLetraint(array,100);
+		devuelve=checkearLetraint(array,100);
 		while(devuelve!=0)
 		{
 			printf(mensajeError);
 			fflush(stdin);
 			gets(array);
-			devuelve=chearLetraint(array,100);
+			devuelve=checkearLetraint(array,100);
 		}
 		*resultado=atoi(array);
 	}

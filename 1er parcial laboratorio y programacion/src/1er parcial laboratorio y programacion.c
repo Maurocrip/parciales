@@ -30,6 +30,7 @@ int main(void)
 	initViviendas(casas,CANTIDAD);
 	initcensista(sensadores);
 
+//MENU
 	do
 	{
 		getValidacionMaximoMinimo(&respuesta,"\nIngrese un numero \n"
@@ -47,6 +48,8 @@ int main(void)
 					" 6. SALIR ", 1, 6);
 
 		validacion=contadorViviendasRegistradas(casas,CANTIDAD);
+
+//OPCIONES
 		switch(respuesta)
 			{
 				case 1:

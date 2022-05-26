@@ -37,9 +37,7 @@ int initcensista(Censista* list)
 	return devuelve;
 }
 
-//Censista ({100, Ana, 34, 1203-2345}, {101, Juan, 24, 4301-54678}, {102, Sol, 47, 5902-37487} )
-
-int listadoCensistas(Censista* list, int length)
+int listadoCensistas(Censista* list, int tam)
 {
 	int i;
 	int respuesta;
@@ -48,12 +46,11 @@ int listadoCensistas(Censista* list, int length)
 
 	if(list != NULL)
 	{
-		for(i=0;i<length;i++)
+		for(i=0;i<tam;i++)
 		{
-			printf("\nlegajoCensista: %d\nnombre: %s\ntelefono: %s\nedad: %d\n",
+			printf("\nlegajoCensista: %d\nNombre: %s\nTelefono: %s\nEdad: %d\n",
 				list[i].legajoCensista, list[i].nombre, list[i].telefono, list[i].edad);
 			respuesta=0;
-
 		}
 	}
 	return respuesta;

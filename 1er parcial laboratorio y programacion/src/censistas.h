@@ -30,8 +30,15 @@ struct
  */
 int initcensista(Censista* list);
 
-
-int listadoCensistas(Censista* list, int length);
+/**
+ * @fn int listadoCensistas(Censista*, int)
+ * @brief muestra todos los datos de los censiatas dentro de un array de tipo Censista.
+ *
+ * @param list: array de tipo Censista.
+ * @param tam: tamaño del array.
+ * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - (0) si salio todo bien.
+ */
+int listadoCensistas(Censista* list, int tam);
 
 
 #endif /* CENSISTAS_H_ */
