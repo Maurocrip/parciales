@@ -105,19 +105,19 @@ void modificacion(Vivienda* lista, int tam)
 			switch(opcion)
 			{
 				case 1:
-					modificarCalle(lista,tam,validar);
+					modificarCalle(lista,validar);
 				break;
 
 				case 2:
-					modificarCantidadPersonas(lista,tam,validar);
+					modificarCantidadPersonas(lista,validar);
 				break;
 
 				case 3:
-					modificarCantidadHabitaciones(lista,tam,validar);
+					modificarCantidadHabitaciones(lista,validar);
 				break;
 
 				case 4:
-					modificarTipoVivienda(lista,tam,validar);
+					modificarTipoVivienda(lista,validar);
 				break;
 			}
 		}while(opcion!=5);
@@ -128,7 +128,7 @@ void modificacion(Vivienda* lista, int tam)
 	}
 }
 
-void modificarCalle(Vivienda* guardar, int tam, int indice)
+void modificarCalle(Vivienda* guardar, int indice)
 {
 	int validarChar;
 	validarChar=UTN_GetValor((*(guardar+indice)).calle, NOMBRE, "Ingrese el nombre de la calle: ", "ERROR, el nombre de la calle tiene mas de 50 digitos o contiene algun numero.\n"
@@ -143,21 +143,21 @@ void modificarCalle(Vivienda* guardar, int tam, int indice)
 	}
 }
 
-void modificarTipoVivienda(Vivienda* guardar, int tam, int indice)
+void modificarTipoVivienda(Vivienda* guardar, int indice)
 {
 	getValidacionMaximoMinimo(&(guardar+indice)->tipoVivienda, "ingrese el tipo de vivienda(1.CASA – 2.DEPARTAMENTO – 3.CASILLA - 4.RANCHO): ",
 						"ERROR, el tipo de vivienda ingresado es incorrecto.\nPor favor ingrese solo el numero correspondiente al tipo de vivienda (1.CASA – 2.DEPARTAMENTO – 3.CASILLA - 4.RANCHO): ",1,4);
 	printf("\nel tipo de vivienda se ah cambiado\n");
 }
 
-void modificarCantidadPersonas(Vivienda* guardar, int tam, int indice)
+void modificarCantidadPersonas(Vivienda* guardar, int indice)
 {
 	UTN_getValidacionMayorInt(&(guardar+indice)->cantidadPersonas,"ingrese la cantidad de personas que viven en la casa: ",
 						"ERROR, reingrese  la cantidad de personas que viven en la casa(numero mayor a 0): ", 1);
 	printf("\nLa cantidad de personas se ah cambiado a: %d\n", (guardar+indice)->cantidadPersonas);
 }
 
-void modificarCantidadHabitaciones(Vivienda* guardar, int tam, int indice)
+void modificarCantidadHabitaciones(Vivienda* guardar, int indice)
 {
 	UTN_getValidacionMayorInt(&(guardar+indice)->cantidadHabitaciones,"ingrese la cantidad de habitaciones que hay en la casa: ",
 						"ERROR, reingrese la cantidad de habitaciones que hay en la casa:(numero mayor a 0):",1);
@@ -205,6 +205,15 @@ int ordenamientoViviendas(Vivienda* list, int tam)
 						guardado=list[j];
 						list[j]=list[i];
 						list[i]=guardado;
+					}
+					else
+					{
+						if(strcmp((list+i)->calle,(list+j)->calle)!=0 && (list+i)->cantidadPersonas>(list+j)->cantidadPersonas)
+						{
+							guardado=list[j];
+							list[j]=list[i];
+							list[i]=guardado;
+						}
 					}
 				}
 			}

@@ -53,17 +53,100 @@ void alta(Vivienda* persona, int id, int tam);
  */
 int buscarVivienda(Vivienda* list, int tam,int id);
 
+/**
+ * @fn void modificacion(Vivienda*, int)
+ * @brief Busca una vivinda por su ID y si este esta guardado en el array, le permite luego al usuario modificar:
+ * la calle, la cantidad de personas, la cantidad de habitaciones y el tipo de vivienda.
+ *
+ * @param list: array de tipo vivienda donde se va a buscar.
+ * @param tam: tamaño del array.
+ */
 void modificacion(Vivienda* lista, int tam);
 
-void modificarCalle(Vivienda* guardar, int tam, int indice);
-void modificarTipoVivienda(Vivienda* guardar, int tam, int indice);
-void modificarCantidadPersonas(Vivienda* guardar, int tam, int indice);
-void modificarCantidadHabitaciones(Vivienda* guardar, int tam, int indice);
+/**
+ * @fn void modificarCalle(Vivienda*, int)
+ * @brief le permite al usuario modificar la calle de una vivienda.
+ *
+ * @param guardar: array de tipo vivienda donde se encuentra la vivienda que se valla a modificar.
+ * @param indice: el indice donde se encuentra la vivienda en el array.
+ */
+void modificarCalle(Vivienda* guardar, int indice);
+
+/**
+ * @fn void modificarTipoVivienda(Vivienda*, int)
+ * @brief le permite al usuario modificar el tipo de vivienda de una vivienda.
+ *
+ * @param guardar: array de tipo vivienda donde se encuentra la vivienda que se valla a modificar.
+ * @param indice: el indice donde se encuentra la vivienda en el array.
+ */
+void modificarTipoVivienda(Vivienda* guardar, int indice);
+
+/**
+ * @fn void modificarCantidadPersonas(Vivienda*, int)
+ * @brief le permite al usuario modificar la cantidad de personas de una vivienda.
+ *
+ * @param guardar: array de tipo vivienda donde se encuentra la vivienda que se valla a modificar.
+ * @param indice: el indice donde se encuentra la vivienda en el array.
+ */
+void modificarCantidadPersonas(Vivienda* guardar, int indice);
+
+/**
+ * @fn void modificarCantidadHabitaciones(Vivienda*, int)
+ * @brief le permite al usuario modificar la cantidad de habitaciones de una vivienda.
+ *
+ * @param guardar: array de tipo vivienda donde se encuentra la vivienda que se valla a modificar.
+ * @param indice: el indice donde se encuentra la vivienda en el array.
+ */
+void modificarCantidadHabitaciones(Vivienda* guardar, int indice);
+
+/**
+ * @fn void baja(Vivienda*, int)
+ * @brief le permite al usuario der de baja/eliminar una vivienda ya ingresada a traves de su ID.
+ *
+ * @param list: array de tipo vivienda donde se va a buscar.
+ * @param tam: tamaño del array.
+ */
 void baja(Vivienda* lista, int tam);
-int ordenamientoViviendas(Vivienda* list, int len);
+
+/**
+ * @fn int ordenamientoViviendas(Vivienda*, int)
+ * @brief ordena un aray de tipo vivienda de manera alfabetica segun el nombre de la calle.
+ * En casa de que el nombre sea el msimo, se ordena por la cantidad de personas de manera acendente.
+ *
+ * @param list: array de tipo vivienda que se valla a ordenar.
+ * @param tam: tamaño del array.
+ * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - (0) si salio todo bien.
+ */
+int ordenamientoViviendas(Vivienda* list, int tam);
+
+/**
+ * @fn int listadoVivienda(Vivienda*, int)
+ * @brief muestra todos los elementos de un array de tipo vivienda, cullas ID sean mayorers a 20000.
+ *
+ * @param list: array de tipo vivienda que se valla a ordenar.
+ * @param tam: tamaño del array.
+ * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - (0) si salio todo bien.
+ */
 int listadoVivienda(Vivienda* list, int tam);
+
+/**
+ * @fn int contadorViviendasRegistradas(Vivienda*, int)
+ * @brief cualcula la cantidad de viviendas que se ingresaron verificando si su ID es mayor a 20000.
+ *
+ * @param list: array de tipo vivienda donde se cuente la cantidad de viviendas registradas que hay.
+ * @param tam: tamaño del array.
+ * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - la cantidad de viviendas registradas.
+ */
 int contadorViviendasRegistradas(Vivienda* list, int tam);
 
+//FUNCIONES AUXILIARES
+/**
+ * @fn void convertirPalabraAMinusculas(char*, int)
+ * @brief convierte todos los caracterers de un array de tipo char a minuscula.
+ *
+ * @param comprobar: array de tipo char.
+ * @param tam: tamño del array.
+ */
 void convertirPalabraAMinusculas(char* comprobar, int tam);
 
 
