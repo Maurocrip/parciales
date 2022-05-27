@@ -268,18 +268,6 @@ int contadorViviendasRegistradas(Vivienda* list, int tam)
 	return respuesta;
 }
 
-void convertirPalabraAMinusculas(char* comprobar, int tam)
-{
-	int i;
-
-	if(comprobar != NULL)
-	{
-		for(i=0;i<tam;i++)
-		{
-			*(comprobar+i)=tolower(*(comprobar+i));
-		}
-	}
-}
 
 int ordenamientoPorCensista(Vivienda* list, int tam)
 {
@@ -469,4 +457,17 @@ int censistaConMasViviendas(Vivienda* list, int tam)
 		}
 	}
 	return devuelve;
+}
+
+void convertirPalabraAMinusculas(char* comprobar, int tam)
+{
+	int i;
+
+	if(comprobar != NULL)
+	{
+		for(i=0;i<tam;i++)
+		{
+			*(comprobar+i)=tolower(*(comprobar+i));
+		}
+	}
 }

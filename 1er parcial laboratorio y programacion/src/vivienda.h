@@ -139,11 +139,39 @@ int listadoVivienda(Vivienda* list, int tam);
  */
 int contadorViviendasRegistradas(Vivienda* list, int tam);
 
+/**
+ * @fn int ordenamientoPorCensista(Vivienda*, int)
+ * @brief ordena un array de tipo vivienda segun el legajo del censista.
+ *
+ * @param list: array de tipo vivienda que se valla a ordenar.
+ * @param tam: tamaño del array.
+ * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - 0 si salio todo bien.
+ */
 int ordenamientoPorCensista(Vivienda* list, int tam);
 
+/**
+ * @fn int censistaPorVivienda(Vivienda*, int, Censista*, int)
+ * @brief Muestra los datos de cada censista juntos con los datos de las vivienda que censo.
+ *
+ * @param list: array de tipo vivienda.
+ * @param tam: tamaño del array.
+ * @param censista: array de tipo censista.
+ * @param tamCensista: tamaño del array de tipo censista.
+ * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - 0 si salio todo bien.
+ */
 int censistaPorVivienda(Vivienda* list, int tam,Censista* censista, int tamCensista);
 
+/**
+ * @fn int censistaConMasViviendas(Vivienda*, int)
+ * @brief calcula cual es el censista con mas viviendas censadas.
+ *
+ * @param list: array de tipo Censista.
+ * @param tam: tamaño del array.
+ * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - 0 si salio todo bien.
+ */
 int censistaConMasViviendas(Vivienda* list, int tam);
+
+
 //FUNCIONES AUXILIARES
 /**
  * @fn void convertirPalabraAMinusculas(char*, int)

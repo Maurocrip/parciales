@@ -40,8 +40,25 @@ int initcensista(Censista* list);
  */
 int listadoCensistas(Censista* list, int tam);
 
+/**
+ * @fn int listadoCensista(Censista*, int)
+ * @brief muestra los datos de un solo censista.
+ *
+ * @param list: array de tipo Censista.
+ * @param tam: tamaño del array.
+ * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - (0) si salio todo bien.
+ */
 int listadoCensista(Censista* list, int indices);
 
+/**
+ * @fn int buscarCensista(Censista*, int, int)
+ * @brief busca la ubicacion de un censista dentro de un array por si legajo.
+ *
+ * @param list: array de tipo Censista.
+ * @param tam: tamaño del array.
+ * @param legajo: legajo del censista que se valla a buscar.
+ * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - (0) si salio todo bien.
+ */
 int buscarCensista(Censista* list, int tam,int legajo);
 
 
