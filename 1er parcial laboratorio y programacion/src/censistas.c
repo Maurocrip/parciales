@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "censistas.h"
+#include "vivienda.h"
 
 int initcensista(Censista* list)
 {
@@ -49,9 +50,45 @@ int listadoCensistas(Censista* list, int tam)
 		for(i=0;i<tam;i++)
 		{
 			printf("\nlegajoCensista: %d\nNombre: %s\nTelefono: %s\nEdad: %d\n",
-				list[i].legajoCensista, list[i].nombre, list[i].telefono, list[i].edad);
+				(list+i)->legajoCensista, (list+i)->nombre, (list+i)->telefono, (list+i)->edad);
 			respuesta=0;
 		}
 	}
 	return respuesta;
+}
+
+int listadoCensista(Censista* list, int indices)
+{
+	int respuesta;
+
+	respuesta=-1;
+
+	if(list != NULL)
+	{
+		printf("\nlegajoCensista: %d Nombre: %s Telefono: %s Edad: %d\n",
+			(list+indices)->legajoCensista, (list+indices)->nombre, (list+indices)->telefono, (list+indices)->edad);
+		respuesta=0;
+	}
+	return respuesta;
+}
+
+int buscarCensista(Censista* list, int tam,int legajo)
+{
+	int i;
+	int devuelve;
+
+	devuelve=-1;
+
+	if(list != NULL && tam>0)
+	{
+		for(i=0;i<tam;i++)
+		{
+			if((list+i)->legajoCensista == legajo)
+			{
+				devuelve=i;
+				break;
+			}
+		}
+	}
+	return devuelve;
 }

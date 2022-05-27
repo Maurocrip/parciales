@@ -139,6 +139,11 @@ int listadoVivienda(Vivienda* list, int tam);
  */
 int contadorViviendasRegistradas(Vivienda* list, int tam);
 
+int ordenamientoPorCensista(Vivienda* list, int tam);
+
+int censistaPorVivienda(Vivienda* list, int tam,Censista* censista, int tamCensista);
+
+int censistaConMasViviendas(Vivienda* list, int tam);
 //FUNCIONES AUXILIARES
 /**
  * @fn void convertirPalabraAMinusculas(char*, int)

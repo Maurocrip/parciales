@@ -40,5 +40,9 @@ int initcensista(Censista* list);
  */
 int listadoCensistas(Censista* list, int tam);
 
+int listadoCensista(Censista* list, int indices);
+
+int buscarCensista(Censista* list, int tam,int legajo);
+
 
 #endif /* CENSISTAS_H_ */

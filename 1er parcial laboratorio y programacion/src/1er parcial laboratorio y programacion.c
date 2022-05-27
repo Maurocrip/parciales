@@ -14,6 +14,7 @@
 #include "vivienda.h"
 
 #define CANTIDAD 500
+#define CENSISTAS 3
 
 int main(void)
 {
@@ -23,7 +24,7 @@ int main(void)
 	int respuesta;
 	int id;
 	Vivienda casas[CANTIDAD];
-	Censista sensadores[3];
+	Censista sensadores[CENSISTAS];
 
 	id=20000;
 
@@ -38,14 +39,16 @@ int main(void)
 				" 2. MODIFICAR VIVIENDA\n"
 				" 3. BAJA VIVIENDA\n"
 				" 4. LISTAR VIVENDAS\n"
-				" 5. LISTAR CENSISTAS\n"
-				" 6. SALIR ", "\nERROR, Reingrese un numero valido(1-6)\n"
+				" 5. LISTAR CENSISTAS CON VIVIENDAS\n"
+				" 6. CENSISTA CON MAS CENSOS REALIZADOS\n"
+				" 7. SALIR ", "\nERROR, Reingrese un numero valido(1-7)\n"
 					" 1. ALTAS\n"
 					" 2. MODIFICAR VIVIENDA\n"
 					" 3. BAJA VIVIENDA\n"
 					" 4. LISTAR VIVENDAS\n"
-					" 5. LISTAR CENSISTAS\n"
-					" 6. SALIR ", 1, 6);
+					" 5. LISTAR CENSISTAS CON VIVIENDAS\n"
+					" 6. CENSISTA CON MAS CENSOS REALIZADOS\n"
+					" 7. SALIR ", 1, 7);
 
 		validacion=contadorViviendasRegistradas(casas,CANTIDAD);
 
@@ -99,11 +102,30 @@ int main(void)
 
 				case 5:
 					//LISTADO  DE CENSISTAS
-					listadoCensistas(sensadores, 3);
+					if(validacion!=0)
+					{
+						censistaPorVivienda(casas,CANTIDAD,sensadores, CENSISTAS);
+					}
+					else
+					{
+						printf("\nNo hay viviendas ingresadas, por favor ingrese una vivienda antes.\n");
+					}
+				break;
+
+				case 6:
+					//LISTADO  DE CENSISTAS
+					if(validacion!=0)
+					{
+						censistaConMasViviendas(casas,CANTIDAD);
+					}
+					else
+					{
+						printf("\nNo hay viviendas ingresadas, por favor ingrese una vivienda antes.\n");
+					}
 				break;
 			}
 
-	}while(respuesta!=6);
+	}while(respuesta!=7);
 
 	return 0;
 }

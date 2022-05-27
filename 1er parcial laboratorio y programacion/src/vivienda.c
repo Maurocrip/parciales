@@ -69,7 +69,7 @@ int buscarVivienda(Vivienda* list, int tam,int id)
 	{
 		for(i=0;i<tam;i++)
 		{
-			if(list[i].idVivienda == id)
+			if((list+i)->idVivienda == id)
 			{
 				devuelve=i;
 				break;
@@ -279,4 +279,194 @@ void convertirPalabraAMinusculas(char* comprobar, int tam)
 			*(comprobar+i)=tolower(*(comprobar+i));
 		}
 	}
+}
+
+int ordenamientoPorCensista(Vivienda* list, int tam)
+{
+	int i;
+	int j;
+	int devuelve;
+	Vivienda guardado;
+
+	devuelve=-1;
+
+	if(list != NULL && tam>0)
+	{
+		devuelve=0;
+		for(i=0;i<tam;i++)
+		{
+			for(j=i+1;j<tam-1;j++)
+			{
+				if((list+i)->idVivienda>20000 && (list+j)->idVivienda>20000)
+				{
+					if((list+i)->legajoCensista.legajoCensista>(list+j)->legajoCensista.legajoCensista)
+					{
+						guardado=list[j];
+						list[j]=list[i];
+						list[i]=guardado;
+					}
+				}
+			}
+		 }
+	}
+
+	return devuelve;
+}
+
+int censistaPorVivienda(Vivienda* list, int tam,Censista* censista, int tamCensista)
+{
+	int i;
+	int devuelve;
+	int iCensista;
+	int falgCensista100;
+	int falgCensista101;
+	int falgCensista102;
+
+	devuelve=-1;
+	falgCensista100=0;
+	falgCensista101=0;
+	falgCensista102=0;
+
+	if(list != NULL && tam>0)
+	{
+		devuelve=0;
+		ordenamientoPorCensista(list, tam);
+		for(i=0;i<tam;i++)
+		{
+			switch((list+i)->legajoCensista.legajoCensista)
+			{
+				case 100:
+					iCensista=buscarCensista(censista,tamCensista,(list+i)->legajoCensista.legajoCensista);
+					if(falgCensista100==0)
+					{
+						listadoCensista(censista, iCensista);
+						falgCensista100=1;
+					}
+					printf("-Calle: %s  -Cantidad de Personas: %d  -Cantidad de Habitaciones: %d  -ID: %d -Tipo de Vivienda: %d  -legajo sencista: %d\n",
+					(list+i)->calle, (list+i)->cantidadPersonas, (list+i)->cantidadHabitaciones, (list+i)->idVivienda, (list+i)->tipoVivienda, (list+i)->legajoCensista.legajoCensista);
+				break;
+
+				case 101:
+					iCensista=buscarCensista(censista,tamCensista,(list+i)->legajoCensista.legajoCensista);
+					if(falgCensista101==0)
+					{
+						listadoCensista(censista, iCensista);
+						falgCensista101=1;
+					}
+					printf("-Calle: %s  -Cantidad de Personas: %d  -Cantidad de Habitaciones: %d  -ID: %d  -Tipo de Vivienda: %d  -legajo sencista: %d\n",
+					(list+i)->calle, (list+i)->cantidadPersonas, (list+i)->cantidadHabitaciones, (list+i)->idVivienda, (list+i)->tipoVivienda, (list+i)->legajoCensista.legajoCensista);
+				break;
+
+				case 102:
+					iCensista=buscarCensista(censista,tamCensista,(list+i)->legajoCensista.legajoCensista);
+					if(falgCensista102==0)
+					{
+						listadoCensista(censista, iCensista);
+						falgCensista102=1;
+					}
+					printf("-Calle: %s  -Cantidad de Personas: %d  -Cantidad de Habitaciones: %d  -ID: %d  -Tipo de Vivienda: %d  -legajo sencista: %d\n",
+					(list+i)->calle, (list+i)->cantidadPersonas, (list+i)->cantidadHabitaciones, (list+i)->idVivienda, (list+i)->tipoVivienda, (list+i)->legajoCensista.legajoCensista);
+				break;
+			}
+		}
+	}
+	return devuelve;
+}
+
+int censistaConMasViviendas(Vivienda* list, int tam)
+{
+	int i;
+	int devuelve;
+	int cencista100;
+	int cencista101;
+	int cencista102;
+
+	devuelve=-1;
+	cencista100=0;
+	cencista101=0;
+	cencista102=0;
+
+
+	if(list != NULL && tam>0)
+	{
+		devuelve=0;
+		ordenamientoViviendas(list, tam);
+		for(i=0;i<tam;i++)
+		{
+			switch((list+i)->legajoCensista.legajoCensista)
+			{
+				case 100:
+					cencista100++;
+				break;
+
+				case 101:
+					cencista101++;
+				break;
+
+				case 102:
+					cencista102++;
+				break;
+			}
+		}
+
+		if(cencista100>cencista101)
+		{
+			if(cencista100>cencista102)
+			{
+				printf("\nEl sencista con mas viviendas sensadas es Ana\n");
+			}
+			else
+			{
+				if(cencista100<cencista102)
+				{
+					printf("\nEl sencista con mas viviendas sensadas es Sol\n");
+				}
+				else
+				{
+					printf("\nLos sencistas con mas viviendas sensadas son Ana y Sol\n");
+				}
+			}
+		}
+		else
+		{
+			if(cencista100<cencista101)
+			{
+
+				if(cencista101>cencista102)
+				{
+					printf("\nEl sencista con mas viviendas sensadas es juan\n");
+				}
+				else
+				{
+					if(cencista100<cencista102)
+					{
+						printf("\nEl sencista con mas viviendas sensadas es Sol\n");
+					}
+					else
+					{
+						printf("\nLos sencistas con mas viviendas sensadas son juan y Sol\n");
+					}
+				}
+			}
+			else
+			{
+				if(cencista101>cencista102)
+				{
+					printf("\nLos sencistas con mas viviendas sensadas son juan y Ana\n");
+				}
+				else
+				{
+					if(cencista101<cencista102)
+					{
+						printf("\nEl sencista con mas viviendas sensadas es Sol\n");
+					}
+					else
+					{
+						printf("\nLos sencistas con mas viviendas sensadas son juan, Sol y Ana\n");
+					}
+				}
+			}
+		}
+	}
+	return devuelve;
 }
