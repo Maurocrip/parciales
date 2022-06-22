@@ -123,7 +123,7 @@ int ordenamientoViviendas(Vivienda* list, int tam);
  * @fn int listadoVivienda(Vivienda*, int)
  * @brief muestra todos los elementos de un array de tipo vivienda, cullas ID sean mayorers a 20000.
  *
- * @param list: array de tipo vivienda que se valla a ordenar.
+ * @param list: array de tipo vivienda que se valla a listar.
  * @param tam: tamaño del array.
  * @return retorna (-1) si es error [tamaño incorrecto o puntero NULL] - (0) si salio todo bien.
  */

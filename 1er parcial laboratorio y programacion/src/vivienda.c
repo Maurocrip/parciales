@@ -208,7 +208,7 @@ int ordenamientoViviendas(Vivienda* list, int tam)
 					}
 					else
 					{
-						if(strcmp((list+i)->calle,(list+j)->calle)!=0 && (list+i)->cantidadPersonas>(list+j)->cantidadPersonas)
+						if(strcmp((list+i)->calle,(list+j)->calle)==0)
 						{
 							guardado=list[j];
 							list[j]=list[i];

@@ -1,0 +1,8 @@
+id_servicio,descripcion,tipo,precioUnitario,cantidad,totalServicio
+63,boton camisa,145.000000,120,2,17400.000000
+54,boton camisa,145.000000,120,2,17400.000000
+72,boton camisa,145.000000,60,2,8700.000000
+60,cambio boton,70.000000,10,2,700.000000
+73,cambio boton,70.000000,25,2,1750.000000
+51,ensamble vestido,860.000000,25,2,21500.000000
+74,ensamble vestido,860.000000,15,2,12900.000000
