@@ -102,7 +102,7 @@ int main()
 				}
 				else
 				{
-					printf("\nNo hay pasajeros ingresados\n");
+					printf("\nDebes de cargar el archivo antes\n");
 				}
 		    break;
 
@@ -113,7 +113,7 @@ int main()
 				}
 				else
 				{
-					printf("\nNo hay pasajeros ingresados\n");
+					printf("\nDebes de cargar el archivo antes\n");
 				}
 		    break;
 
@@ -124,7 +124,7 @@ int main()
 				}
 				else
 				{
-					printf("\nNo hay pasajeros ingresados\n");
+					printf("\nDebes de cargar el archivo antes\n");
 				}
 			break;
         }

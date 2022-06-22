@@ -18,7 +18,7 @@ eServicios* Servicios_new()
 	eServicios* pAux= (eServicios*) malloc(sizeof(eServicios));
 	if(pAux==NULL)
 	{
-		printf("\nNo se pudo crear un nuevo pasajero\n");
+		printf("\nNo se pudo crear un nuevo servicio\n");
 		exit(1);
 	}
 	return pAux;
@@ -36,6 +36,8 @@ eServicios* Servicios_newParametros(char* idStr,char* descripcionStr,char* tipoS
 	Servicios_setServicioTotal(pAux,atof(servicioTotalStr));
 	return pAux;
 }
+
+//---------------------------------------------------------FUNCIONES GET AND SET-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 int Servicios_setId(eServicios* this,int id)
@@ -171,39 +173,19 @@ int Servicios_getServicioTotal(eServicios* this,float* servicioTotal)
 	return devuelve;
 }
 
+//--------------------------------------------------------------------FIN FUNCIONES GET AND SET--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-int mostrarServicio(eServicios* servicio)
-{
-	int devuelve;
-	devuelve=0;
-	if(servicio!=NULL)
-	{
-		devuelve=1;
-		printf("|%*d|%*s|%*.2f|%*d|%*d|%*.2f|\n"
-			,-10,servicio->id_servicio,-30,servicio->descripcion,-20,servicio->precioUnitario,-10,servicio->cantidad,-5,servicio->tipo,-30,servicio->totalServicio);
-	}
-	return devuelve;
-}
-
-void calcularPrecioFinal(void* elemento)
-{
-	eServicios* p;
-    if(elemento != NULL)
-    {
-    	p=(eServicios*) elemento;
-        p->totalServicio = p->precioUnitario*p->cantidad;
-    }
-
-}
+//---------------------------------------------------------FUNCIONES PARA FILTRAR----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 int filtrarPorMinorista(void* elemento)
 {
 	int devuelve;
-	eServicios* p;
+
 	devuelve=0;
 	if(elemento != NULL)
 	{
+		eServicios* p;
 		p=(eServicios*) elemento;
 		if(p->tipo==1)
 		{
@@ -216,10 +198,11 @@ int filtrarPorMinorista(void* elemento)
 int filtrarPorMayoristas(void* elemento)
 {
 	int devuelve;
-	eServicios* p;
+
 	devuelve=0;
 	if(elemento != NULL)
 	{
+		eServicios* p;
 		p=(eServicios*) elemento;
 		if(p->tipo==2)
 		{
@@ -232,10 +215,11 @@ int filtrarPorMayoristas(void* elemento)
 int filtrarPorExportar(void* elemento)
 {
 	int devuelve;
-	eServicios* p;
+
 	devuelve=0;
 	if(elemento != NULL)
 	{
+		eServicios* p;
 		p=(eServicios*) elemento;
 		if(p->tipo==3)
 		{
@@ -246,28 +230,65 @@ int filtrarPorExportar(void* elemento)
 }
 
 
-int saveServicioFiltradoArchivo(FILE* pFile, LinkedList* this)
+//-----------------------------------------------------------FIN FUNCIONES PARA FILTRAR----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//---------------------------------------------------------FUNCIONES PARA MOSTRAR----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+int mostrarServicio(eServicios* servicio)
 {
 	int devuelve;
-	int tam;
-	eServicios* servicioGuardar=Servicios_new();
 	devuelve=0;
-
-	if(this!=NULL&& pFile!=NULL)
+	if(servicio!=NULL)
 	{
 		devuelve=1;
-		tam=ll_len(this);
-		fprintf(pFile,"id_servicio,descripcion,tipo,precioUnitario,cantidad,totalServicio\n");
-		for(int i=0;i<tam;i++)
-		{
-			servicioGuardar=ll_get(this,i);
-			fprintf(pFile,"%d,%s,%f,%d,%d,%f\n",
-					servicioGuardar->id_servicio,servicioGuardar->descripcion,servicioGuardar->precioUnitario,servicioGuardar->cantidad,servicioGuardar->tipo,servicioGuardar->totalServicio);
-		}
+		printf("|%*d|%*s|%*.2f|%*d|%*d|%*.2f|\n"
+			,-CANTIDAD_ESPACIOS_ID,servicio->id_servicio,-CANTIDAD_ESPACIOS_DESCRIPCION,servicio->descripcion,-CANTIDAD_ESPACIOS_PRECIO_UNITARIO,servicio->precioUnitario,-CANTIDAD_ESPACIOS_CANTIDAD,servicio->cantidad,-CANTIDAD_ESPACIOS_TIPO,servicio->tipo,-CANTIDAD_ESPACIOS_TOTAL_DEL_SERVICIO,servicio->totalServicio);
 	}
 	return devuelve;
 }
 
+int mostrarTodosLosServicio(LinkedList* this)
+{
+
+	int devuelve;
+	devuelve=0;
+	if(this!=NULL)
+	{
+		int tam;
+		int i;
+		devuelve=1;
+		eServicios* pServicio=Servicios_new();
+
+		tam=ll_len(this);
+
+		printf("\n----------------------------------------------------------------------------------------------------------------\n");
+		printf("|%*s|%*s|%*s|%*s|%*s|%*s|\n",-CANTIDAD_ESPACIOS_ID,"ID",-CANTIDAD_ESPACIOS_DESCRIPCION,"DESCRIPCION",-CANTIDAD_ESPACIOS_PRECIO_UNITARIO,"PRECIO UNITARIO",-CANTIDAD_ESPACIOS_CANTIDAD,"CANTIDAD",-CANTIDAD_ESPACIOS_TIPO,"TIPO",-CANTIDAD_ESPACIOS_TOTAL_DEL_SERVICIO,"PRECIO TOTAL DEL SERVICIO");
+		printf("----------------------------------------------------------------------------------------------------------------\n");
+		for(i=0;i<tam;i++)
+		{
+			pServicio=ll_get(this,i);
+			mostrarServicio(pServicio);
+		}
+		free(pServicio);
+	}
+	return devuelve;
+}
+
+//---------------------------------------------------------FIN FUNCIONES PARA MOSTRAR------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+void calcularPrecioFinal(void* elemento)
+{
+	eServicios* p;
+    if(elemento != NULL)
+    {
+    	p=(eServicios*) elemento;
+        p->totalServicio = p->precioUnitario*p->cantidad;
+    }
+
+}
 
 int compararDescripcionServicios(void* primerElemento, void* segundoElemento)
 {
@@ -284,32 +305,36 @@ int compararDescripcionServicios(void* primerElemento, void* segundoElemento)
 		devuelve=strcmp(primerServicio->descripcion,segundoServicio->descripcion);
 	}
 
-
-
 	return devuelve;
 }
 
-int mostrarTodosLosServicio(LinkedList* this)
-{
-	int tam;
-	int i;
-	int devuelve;
-	devuelve=0;
-	if(this!=NULL)
-	{
-		devuelve=1;
-		eServicios* pServicio=Servicios_new();
-		tam=ll_len(this);
 
-		printf("\n----------------------------------------------------------------------------------------------------------------\n");
-		printf("|%*s|%*s|%*s|%*s|%*s|%*s|\n",-10,"ID",-30,"DESCRIPCION",-20,"PRECIO UNITARIO",-10,"CANTIDAD",-5,"TIPO",-30,"PRECIO TOTAL DEL SERVICIO");
-		printf("----------------------------------------------------------------------------------------------------------------\n");
-		for(i=0;i<tam;i++)
+
+//---------------------------------------------------------FUNCIONES PARA GUARDAR EN ARCHIVO-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+int saveServicioFiltradoArchivo(FILE* pFile, LinkedList* this)
+{
+	int devuelve;
+
+	devuelve=0;
+
+	if(this!=NULL&& pFile!=NULL)
+	{
+		int tam;
+		eServicios* servicioGuardar=Servicios_new();
+		devuelve=1;
+		tam=ll_len(this);
+		fprintf(pFile,"id_servicio,descripcion,tipo,precioUnitario,cantidad,totalServicio\n");
+		for(int i=0;i<tam;i++)
 		{
-			pServicio=ll_get(this,i);
-			mostrarServicio(pServicio);
+			servicioGuardar=ll_get(this,i);
+			fprintf(pFile,"%d,%s,%f,%d,%d,%f\n",
+					servicioGuardar->id_servicio,servicioGuardar->descripcion,servicioGuardar->precioUnitario,servicioGuardar->cantidad,servicioGuardar->tipo,servicioGuardar->totalServicio);
 		}
-		free(pServicio);
+		free(servicioGuardar);
 	}
 	return devuelve;
 }
+
+//---------------------------------------------------------FIN FUNCIONES PARA GUARDAR EN ARCHIVO-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

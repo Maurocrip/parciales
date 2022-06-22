@@ -6,17 +6,18 @@
 #include "servicios.h"
 
 
-int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
+int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListServicios)
 {
-	eServicios* pServicio;
-	int r;
 	int devuelve;
-	char id[50],descripcion[50],tipo[50],precioUnitario[50],cantidad[50],servicioTotal[50];
 
 	devuelve=0;
 
-	if(pArrayListPassenger!=NULL)
+	if(pArrayListServicios!=NULL && pFile!=NULL)
 	{
+		eServicios* pServicio;
+		int r;
+		char id[50],descripcion[50],tipo[50],precioUnitario[50],cantidad[50],servicioTotal[50];
+
 		r=fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]",id,descripcion,tipo,precioUnitario,cantidad,servicioTotal);
 
 		while(!feof(pFile))
@@ -30,7 +31,7 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 			pServicio=Servicios_newParametros(id,descripcion,tipo,precioUnitario,cantidad,servicioTotal);
 			devuelve++;
 
-			ll_add(pArrayListPassenger,pServicio);
+			ll_add(pArrayListServicios,pServicio);
 		}
 	}
 
